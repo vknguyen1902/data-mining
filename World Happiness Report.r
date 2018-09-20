@@ -122,3 +122,11 @@ ggplot(subset(happiness, happiness$Continent != "Australia"), aes(x = Economy, y
                    method = "lm", fullrange = TRUE) +
        facet_wrap(~Continent) +
        theme_bw() + labs(title = "Happiness score vs. Economy")
+
+ggplot(data = happiness, aes(x = Economy, y = Happiness.Score)) + 
+       geom_point(color = "black", alpha = 0.6) + 
+       geom_smooth(method = "lm", se = TRUE) + theme_bw() +
+       xlab("Important of Economy") + ylab("Happiness Score") +
+       ggtitle("Happiness Score versus Importance of Economy")  
+
+lm(Happiness.Score ~ Economy, data = happiness)
