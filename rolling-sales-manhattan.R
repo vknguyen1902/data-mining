@@ -55,3 +55,17 @@ ggplot(clean_sales, aes(x=Neighborhood, y=SalePrice, fill=Neighborhood, alpha=60
        xlab('Neighborhood') + ylab('Sale Prices') + 
        theme(axis.text.x = element_text(angle=90, vjust=0.5, hjust=1)) + 
        scale_y_log10() 
+
+#Outliers and Leverage
+fit_num_var <- lm(SalePrice ~ ResidentialUnits + CommercialUnits + 
+       YearBuilt + TotalUnits + LandSquareFeet + GrossSquareFeet,
+       data = clean_sales)
+fit_num_var
+
+leverage <- hat(model.matrix(fit_num_var))
+plot(leverage)
+
+#ggplot(fit_num_var, aes(x=fitted.values, y=residuals)) + 
+       #geom_point() + geom_line() + xlab("Fitted Values") + ylab("Studentized Residuals")
+
+#High Leverage Points
